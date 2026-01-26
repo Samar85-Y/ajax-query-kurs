@@ -72,6 +72,10 @@ header h1 {
   color: #555;
 }
 
+#output {
+  margin: 1rem 0;
+}
+
 .footer {
   text-align: center;
   font-size: 0.9rem;
