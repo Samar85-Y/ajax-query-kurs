@@ -19,9 +19,9 @@ Dieses Repository enthält die Beispiele und Startdateien für den Kurs **AJAX &
 ### Repository klonen
 
 ```bash
-  cd ~/ajax-jquery-kurs
-  git https://github.com/jaderbass/ajax-jquery-course-start
-  ```
+cd C:\laragon\www\ajax-jquery-kurs
+git https://github.com/jaderbass/ajax-jquery-course-start
+```
 
 ## Struktur
 
