@@ -1,5 +1,5 @@
 $("'btn").on("click", () => {
-    4.getJSON("server/list.php", (data) => {
+    $.getJSON("server/list.php", (data) => {
         render(data);
     });
 
