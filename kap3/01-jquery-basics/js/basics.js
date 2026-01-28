@@ -5,5 +5,5 @@ document.querySelector("#btn").onclick = () =>{
 };
 */
 $("#btn").on("click", () => {
-    $("#otuput").text("Hallo Vanilla jQuery");
+    $("#output").text("Hallo Vanilla jQuery");
 });

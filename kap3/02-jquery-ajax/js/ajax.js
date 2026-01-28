@@ -1,14 +1,17 @@
-$("'btn").on("click", () => {
-    $.getJSON("server/list.php", (data) => {
-        render(data);
+$(document).ready(function () {
+
+    $("#btn").on("click", function () {
+        $.getJSON("server/list.php", function (data) {
+            render(data);
+        });
     });
 
 });
 
-function render(items){
+function render(items) {
     $("#output").empty();
 
-    items.foreach(item =>{
+    items.forEach(function (item) {
         $("#output").append(`<p>${item.title}</p>`);
     });
 }
