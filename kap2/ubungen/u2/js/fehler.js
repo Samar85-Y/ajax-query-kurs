@@ -16,3 +16,11 @@ btn.addEventListener("click", function () {
   xhr.send();
 });
 
+document.getElementById("btnLoad").addEventListener("click", () =>{
+    ajaxGet("data.json", (response, status) =>{
+        if(status === 200){
+            const data = JSON.parse(response);
+            document.getElementById("output").textContent = JSON.stringify(data, null,2);
+        }
+    });
+});
