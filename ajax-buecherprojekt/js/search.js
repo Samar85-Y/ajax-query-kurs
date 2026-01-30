@@ -1,4 +1,4 @@
-// DOM elements
+// Konestanten
 const searchButton = document.querySelector("#textSearch");
 const searchInput = document.querySelector("#searchbar");
 const resultsContainer = document.querySelector("#list");
@@ -41,7 +41,7 @@ function handleSearchResponse(response) {
                     <td>${book.isbn}</td>
                     <td>${book.title}</td>
                     <td>
-                        <button class="details-btn" data-id="1">Details anzeigen</button>
+                        <button class="details-btn" data-id="${book.id}">Details anzeigen</button>
                     </td>
                 </tr>
             `;

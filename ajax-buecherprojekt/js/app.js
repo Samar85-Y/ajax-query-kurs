@@ -37,5 +37,6 @@ function handleResponse() {
   list.innerHTML = output;
 }
 
+
 // current Year
 document.getElementById("year").textContent = new Date().getFullYear();

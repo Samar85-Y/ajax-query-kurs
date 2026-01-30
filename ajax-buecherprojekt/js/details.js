@@ -31,7 +31,7 @@ function renderDetails(data) {
                 <td>${data.author}</td>
                 <td>${data.isbn}</td>
                 <td>${data.publisher}</td>
-                <td><img src="${book.image}" width="80"></td>>
+                <td><img src="${data.image}" width="80"></td>
             </tr>
         </table>
     `);
