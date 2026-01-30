@@ -4,7 +4,6 @@ const searchInput = document.querySelector("#searchbar");
 const resultsContainer = document.querySelector("#list");
 const detailsContainer = document.querySelector("#details");
 
-// Search button click
 searchButton.addEventListener("click", function () {
   const query = searchInput.value.trim();
 
@@ -28,7 +27,6 @@ function searchBooks(query) {
   xhr.send();
 }
 
-// Build table with details buttons
 function handleSearchResponse(response) {
   let output = "<table class='result'>";
 
@@ -37,17 +35,13 @@ function handleSearchResponse(response) {
   } else {
     response.forEach(book => {
       output += `
+      
                 <tr>
                     <td>${book.id}</td>
                     <td>${book.isbn}</td>
                     <td>${book.title}</td>
-                    <td>${book.author}</td>
-                    <td>${book.publisher}</td>
-                    <td><img src="${book.image}" width="80"></td>
                     <td>
-                        <button class="details-btn" data-id="${book.id}">
-                            Details anzeigen
-                        </button>
+                        <button class="details-btn" data-id="1">Details anzeigen</button>
                     </td>
                 </tr>
             `;
@@ -57,51 +51,47 @@ function handleSearchResponse(response) {
   output += "</table>";
   resultsContainer.innerHTML = output;
 
-  // Activate detail buttons
-  document.querySelectorAll(".details-btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const id = this.getAttribute("data-id");
-      loadDetails(id);
-    });
+  $(".details-btn").on("click", function () {
+    const id = $(this).data("id");
+    loadDetails(id);
+  });
+}
+// Load details 
+function loadDetails(id) {
+  $.getJSON(`server/details.php?id=${id}`, function (data) {
+    renderDetails(data);
+  }).fail(function () {
+    $("#details").html("<p>Fehler beim Laden der Details.</p>");
   });
 }
 
-// Load details via AJAX
-function loadDetails(id) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", `server/details.php?id=${id}`);
-  xhr.responseType = "json";
-
-  xhr.onload = function () {
-    showDetails(xhr.response);
-  };
-
-  xhr.send();
-}
-
-// Display details
-function showDetails(book) {
-  if (!book || book.err) {
-    detailsContainer.innerHTML = "<p>Keine Details gefunden.</p>";
+// Details
+function renderDetails(data) {
+  if (data.error) {
+    $("#details").html("<p>Keine Details gefunden.</p>");
     return;
   }
 
-  detailsContainer.innerHTML = `
-        <h2>${book.title}</h2>
-        <table> 
-        <th> 
-          <tr><p><strong>Autor:</strong>  
-           <tr><p><strong>ISBN:</strong>  
-           <tr><p><strong>Verlag:</strong>
-            <tr><p><strong>Bild:</strong>  
-        </th>
+  $("#details").html(`
+    <h2>${data.title}</h2>
 
-        <td> ${book.author}</p></td></tr></th>
-        <td> ${book.isbn}</p></td></tr>
-        <td> ${book.publisher}</p></td></tr>
-        <td> ${book.image}</p></td></tr>
-            </table>
-    `;
+    <table class="table">
+      <tr>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Verlag</th>
+        <th>Bild</th>
+      </tr>
+      <tr>
+        <td>${data.author}</td>
+        <td>${data.isbn}</td>
+        <td>${data.publisher}</td>
+        <td><img src="${data.image}" width="150"></td>
+      </tr>
+      
+    </table>
+  `);
 }
+
 
 document.getElementById("year").textContent = new Date().getFullYear();

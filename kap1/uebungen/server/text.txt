@@ -1,7 +1,0 @@
-Dies ist ein Beispieltext für die AJAX-Übung.
-
-Die Datei wurde erfolgreich per AJAX geladen.
-Die Seite musste dafür nicht neu geladen werden.
-
-Wenn du diesen Text lesen kannst,
-funktioniert dein XMLHttpRequest korrekt.
